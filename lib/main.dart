@@ -1,7 +1,8 @@
-// main.dart
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'topBar.dart';
+import 'modelViewer.dart';
+import 'about.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,8 +15,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  final bool isDarkMode = false;
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool isDarkMode = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +42,6 @@ class HomePage extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.message),
-            title: Text('Message'),
-            onTap: () {
-              // Add navigation functionality here
-            },
-          ),
-          ListTile(
             leading: Icon(Icons.account_circle),
             title: Text('Profile'),
             onTap: () {
@@ -59,10 +59,30 @@ class HomePage extends StatelessWidget {
             title: Text('Dark Mode'),
             value: isDarkMode,
             onChanged: (value) {
-              print("bla");
+              setState(() {
+                isDarkMode = value;
+              });
             },
             secondary: Icon(Icons.brightness_6),
           ),
+          ListTile(
+            leading: Icon(Icons.logout), // Change the icon to a logout icon
+            title: Text('Logout'), // Change the text to 'Logout'
+            onTap: () {},
+          ),
+          ListTile(
+              leading: Icon(Icons.info),
+              title: Text('About'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AboutPage(),
+                  ),
+                );
+              }),
+          // Add your logout functionality here
+          // For example, you might want to clear user data and navigate to the login screen
         ]),
       ),
       body: CarouselDemo(),
@@ -91,34 +111,44 @@ class _CarouselDemoState extends State<CarouselDemo> {
       children: [
         CarouselSlider(
           items: imagePaths.map((path) {
-            return Container(
-              margin: EdgeInsets.all(5.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                  image: AssetImage(path),
-                  fit: BoxFit.cover,
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ModelViewer(path),
+                  ),
+                );
+              },
+              child: Container(
+                margin: EdgeInsets.all(5.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  image: DecorationImage(
+                    image: AssetImage(path),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             );
           }).toList()
             ..add(
-              Container(
-                margin: EdgeInsets.all(5.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.grey[300],
-                ),
-                child: Center(
-                  child: IconButton(
-                    icon: Icon(Icons.add),
-                    onPressed: () {
-                      setState(() {
-                        //Call the activity for adding tickets here
-                        imagePaths.insert(imagePaths.length - 1,
-                            'assets/images/new_image.png');
-                      });
-                    },
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    // Call the activity for adding tickets here
+                    imagePaths.insert(
+                        imagePaths.length - 1, 'assets/images/new_image.png');
+                  });
+                },
+                child: Container(
+                  margin: EdgeInsets.all(5.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.grey[300],
+                  ),
+                  child: Center(
+                    child: Icon(Icons.add),
                   ),
                 ),
               ),
@@ -142,7 +172,7 @@ class _CarouselDemoState extends State<CarouselDemo> {
             int index = imagePaths.indexOf(url);
             return Container(
               width: 8.0,
-              height: 8.0,
+              height: 10.0,
               margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,

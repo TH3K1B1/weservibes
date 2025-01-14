@@ -15,6 +15,8 @@ dependencies:
   cloud_firestore: ^5.6.1
   overlapped_carousel: ^1.0.2
   carousel_slider: ^5.0.0
+  model_viewer_plus: ^1.8.0
+  flutter_cube: ^0.1.1
 
 dev_dependencies:
   flutter_test:
@@ -25,6 +27,9 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/models/1.obj
+    - assets/models/1.png
+    - assets/models/1.mtl
 
   # assets:
   #  - images/a_dot_burr.jpeg
