@@ -51,6 +51,10 @@ class _HomePageState extends State<HomePage> {
           DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.blue,
+              image: DecorationImage(
+                image: AssetImage('assets/images/logo.png'),
+                fit: BoxFit.cover,
+              ),
             ),
             child: Text(
               'Übersicht',
@@ -85,6 +89,17 @@ class _HomePageState extends State<HomePage> {
             secondary: Icon(Icons.brightness_6),
           ),
           ListTile(
+              leading: Icon(Icons.message),
+              title: Text('Message'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChatScreen(),
+                  ),
+                );
+              }),
+          ListTile(
             leading: Icon(Icons.logout), // Change the icon to a logout icon
             title: Text('Logout'), // Change the text to 'Logout'
             onTap: () {
@@ -104,17 +119,6 @@ class _HomePageState extends State<HomePage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => AboutPage(),
-                  ),
-                );
-              }),
-          ListTile(
-              leading: Icon(Icons.message),
-              title: Text('Message'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ChatScreen(),
                   ),
                 );
               }),
