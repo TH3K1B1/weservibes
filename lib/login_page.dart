@@ -54,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Google Login'),
+        leading: Container(), // Hide the back button
       ),
       body: Center(
         child: ElevatedButton(

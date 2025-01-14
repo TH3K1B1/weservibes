@@ -14,7 +14,7 @@ class ModelViewer extends StatelessWidget {
         child: Cube(
           onSceneCreated: (Scene scene) {
             scene.camera.zoom = 8; // Adjust zoom level if needed
-            scene.camera.near = 2; // Adjust near clipping plane
+            scene.camera.near = 4; // Adjust near clipping plane
             scene.world.add(Object(fileName: 'assets/models/1.obj'
                 //'assets/models/${imagePath.split('/').last.replaceAll('.png', '.obj')}',
                 ));
