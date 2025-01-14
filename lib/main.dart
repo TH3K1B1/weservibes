@@ -8,20 +8,28 @@ import 'splash_screen.dart';
 import 'login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:provider/provider.dart';
+import 'chatScreen.dart';
+import 'chatProvider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  print('firebase initialized');
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SplashScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ChatProvider()),
+      ],
+      child: MaterialApp(
+        home: SplashScreen(),
+      ),
     );
   }
 }
@@ -99,6 +107,17 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               }),
+          ListTile(
+              leading: Icon(Icons.message),
+              title: Text('Message'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChatScreen(),
+                  ),
+                );
+              }),
           // Add your logout functionality here
           // For example, you might want to clear user data and navigate to the login screen
         ]),
@@ -128,7 +147,6 @@ class _CarouselDemoState extends State<CarouselDemo> {
     // Get the screen height and width
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
-
     return Column(
       children: [
         CarouselSlider(
