@@ -19,6 +19,7 @@ dependencies:
   flutter_cube: ^0.1.1
   qr_code_scanner: ^0.7.0
   provider: ^6.1.2
+  audioplayers: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +30,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/sounds/
     - assets/models/1.obj
     - assets/models/1.png
     - assets/models/1.mtl

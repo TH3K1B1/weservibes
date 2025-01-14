@@ -11,6 +11,7 @@ import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'chatScreen.dart';
 import 'chatProvider.dart';
+import 'soundboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -69,6 +70,18 @@ class _HomePageState extends State<HomePage> {
             title: Text('Profile'),
             onTap: () {
               // Add navigation functionality here
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.music_note),
+            title: Text('Soundboard'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Soundboard(),
+                ),
+              );
             },
           ),
           ListTile(
