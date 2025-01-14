@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Duration(milliseconds: 1000), () {}); // Wait for half a second
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => HomePage()),
+      MaterialPageRoute(builder: (context) => LoginPage()),
     );
   }
 

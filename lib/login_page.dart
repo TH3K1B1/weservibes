@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart'; //
+import 'package:google_sign_in/google_sign_in.dart';
 import 'main.dart'; // Import main.dart to access googleSignIn instance
 
 class LoginPage extends StatefulWidget {
+  final GoogleSignIn googleSignIn = GoogleSignIn(
+    clientId:
+        '16218835348-jku4a8fp1ertr6694vm57af6b93q2bag.apps.googleusercontent.com',
+  );
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -14,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   Future<User?> _signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser =
-          await getGoogleSignInInstance().signIn();
+          await widget.googleSignIn.signInSilently();
       if (googleUser == null) {
         // The user canceled the sign-in
         return null;
@@ -32,6 +37,15 @@ class _LoginPageState extends State<LoginPage> {
     } catch (e) {
       print("Error signing in with Google: $e");
       return null;
+    }
+  }
+
+  Future<void> _signOut() async {
+    try {
+      await widget.googleSignIn.signOut();
+      await _auth.signOut();
+    } catch (e) {
+      print("Error signing out: $e");
     }
   }
 
@@ -58,10 +72,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-// GoogleSignIn instance with client ID
-final GoogleSignIn googleSignIn = GoogleSignIn(
-    clientId:
-        '16218835348-g7lrklfeg810mgg4tbgtr7utpqv5om78.apps.googleusercontent.com');
-
-GoogleSignIn getGoogleSignInInstance() => googleSignIn;

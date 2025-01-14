@@ -5,8 +5,17 @@ import 'modelViewer.dart';
 import 'about.dart';
 import 'qrScanner.dart';
 import 'splash_screen.dart';
+import 'login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -70,7 +79,14 @@ class _HomePageState extends State<HomePage> {
           ListTile(
             leading: Icon(Icons.logout), // Change the icon to a logout icon
             title: Text('Logout'), // Change the text to 'Logout'
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginPage(),
+                ),
+              );
+            },
           ),
           ListTile(
               leading: Icon(Icons.info),
@@ -109,6 +125,10 @@ class _CarouselDemoState extends State<CarouselDemo> {
 
   @override
   Widget build(BuildContext context) {
+    // Get the screen height and width
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return Column(
       children: [
         CarouselSlider(
@@ -159,9 +179,10 @@ class _CarouselDemoState extends State<CarouselDemo> {
             ),
           options: CarouselOptions(
             enlargeCenterPage: true,
-            height: 400,
-            aspectRatio: 16 / 9,
-            viewportFraction: 0.7,
+            height:
+                screenHeight * 0.7, // Adjust the height based on screen size
+            aspectRatio: screenWidth / screenHeight,
+            viewportFraction: 0.8,
             enableInfiniteScroll: false,
             onPageChanged: (index, reason) {
               setState(() {
