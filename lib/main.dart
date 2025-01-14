@@ -4,6 +4,7 @@ import 'topBar.dart';
 import 'modelViewer.dart';
 import 'about.dart';
 import 'qrScanner.dart';
+import 'splash_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }

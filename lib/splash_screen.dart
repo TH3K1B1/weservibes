@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart'; // Make sure this imports your LoginPage widget
+import 'main.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Duration(milliseconds: 1000), () {}); // Wait for half a second
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
+      MaterialPageRoute(builder: (context) => HomePage()),
     );
   }
 

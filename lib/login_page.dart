@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:google_sign_in/google_sign_in.dart'; //
 import 'main.dart'; // Import main.dart to access googleSignIn instance
 
 class LoginPage extends StatefulWidget {
@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
             if (user != null) {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => HomePage(user: user)),
+                MaterialPageRoute(builder: (context) => HomePage()),
               );
             }
           },
@@ -59,20 +59,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class HomePage extends StatelessWidget {
-  final User user;
+// GoogleSignIn instance with client ID
+final GoogleSignIn googleSignIn = GoogleSignIn(
+    clientId:
+        '16218835348-g7lrklfeg810mgg4tbgtr7utpqv5om78.apps.googleusercontent.com');
 
-  HomePage({required this.user});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Welcome, ${user.displayName}'),
-      ),
-      body: Center(
-        child: Text('You are now signed in!'),
-      ),
-    );
-  }
-}
+GoogleSignIn getGoogleSignInInstance() => googleSignIn;
