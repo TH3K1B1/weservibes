@@ -66,13 +66,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text('Profile'),
-            onTap: () {
-              // Add navigation functionality here
-            },
-          ),
-          ListTile(
             leading: Icon(Icons.music_note),
             title: Text('Soundboard'),
             onTap: () {
@@ -103,7 +96,7 @@ class _HomePageState extends State<HomePage> {
           ),
           ListTile(
               leading: Icon(Icons.message),
-              title: Text('Message'),
+              title: Text('CEO Messages'),
               onTap: () {
                 Navigator.push(
                   context,
