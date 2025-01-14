@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'topBar.dart';
 import 'modelViewer.dart';
 import 'about.dart';
+import 'qrScanner.dart';
 
 void main() => runApp(MyApp());
 
@@ -136,9 +137,11 @@ class _CarouselDemoState extends State<CarouselDemo> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    // Call the activity for adding tickets here
-                    imagePaths.insert(
-                        imagePaths.length - 1, 'assets/images/new_image.png');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => QRScannerScreen()),
+                    );
                   });
                 },
                 child: Container(

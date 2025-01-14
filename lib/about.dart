@@ -20,8 +20,13 @@ class AboutPage extends StatelessWidget {
             Text(
               'Das ist die Weservibes App. Du kannst dir hier deine Eintrittskarten als Sammelkarten einscannen. '
               'Die Karten können ausgewählt und in einer 3D Ansicht angezeigt werden. '
-              'Auf der Rückseite jeder Karte ist ein QR Code eingraviert. Verwende diesen am Einlass.'
+              'Auf der Rückseite jeder Karte ist ein QR Code eingraviert. Verwende diesen am Einlass. '
               'Durch die App wird es auch kleine Boni und Goodies geben. Informationen Folgen.',
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 12),
+            Text(
+              '~CEO',
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 16),
